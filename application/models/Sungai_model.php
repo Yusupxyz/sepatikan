@@ -8,7 +8,7 @@ class Sungai_model extends CI_Model
 
     public $table = 'sungai';
     public $id = 'id';
-    public $order = 'DESC';
+    public $order = 'ASC';
 
     function __construct()
     {
@@ -20,6 +20,21 @@ class Sungai_model extends CI_Model
     {
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
+    }
+
+    // get all for select
+    function get_option()
+    {
+        $this->db->order_by($this->id, $this->order);
+        $result= $this->db->get($this->table);
+		$sungai[''] = '--Pilih--';
+        if ($result->num_rows() > 0) {
+            foreach ($result->result() as $row) {
+            // tentukan value (sebelah kiri) dan labelnya (sebelah kanan)
+                $sungai[$row->id] = $row->sungai;
+            }
+        }
+        return $sungai;
     }
 
     // get data by id

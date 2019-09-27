@@ -104,3 +104,5 @@ h1 {
   <script src="<?= base_url('assets/bower_components/fastclick/lib/fastclick.js');?>"></script>
   <script src="<?= base_url('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');?>"></script>
   <script src="<?= base_url('assets/plugins/iCheck/icheck.min.js');?>"></script>
+
+  <?php $this->load->view($codejs); ?>

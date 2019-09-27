@@ -8,29 +8,16 @@ class Cover extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('form');
         $this->load->model('Jenis_data_model');
-        $this->load->library('form_validation');
+        $this->load->model('Sungai_model');
 	}
 	
 	public function index()
 	{
-        $data['options'] = array(
-						'0' => '--Pilih--',
-						'1' => 'Sungai Katingan',
-						'2' => 'Sungai Sebangau'
-						);
-		$data['options2'] = array(
-						'0' => '--Pilih--',
-						'1' => 'Data Penangkapan Ikan',
-						'2' => 'Data Ekologis/Lingkungan',
-						'3' => 'Data Sosisal Ekonomi Nelayan'
-						);
-		$data['options3'] = array(
-			'0' => '--Pilih--',
-			);
+        $data['options'] = $this->Sungai_model->get_option();
+		$data['options2'] = $this->Jenis_data_model->get_option();
 		$data['attribute'] = 'class="form-control inline select2" ';
-		$data['attribute2'] = 'class="form-control" placeholder="Masukkan Username" ';
-		$data['attribute3'] = 'class="form-control" placeholder="Masukkan Password" ';
         $data['modal'] = 'Cover/modal';
+        $data['codejs'] = 'Cover/codejs';
 		$this->load->view('Cover/index', $data);
 	}
 

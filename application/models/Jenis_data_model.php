@@ -22,6 +22,22 @@ class Jenis_data_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    
+    // get all for select
+    function get_option()
+    {
+        $this->db->order_by($this->id, $this->order);
+        $result= $this->db->get($this->table);
+		$data[''] = '--Pilih--';
+        if ($result->num_rows() > 0) {
+            foreach ($result->result() as $row) {
+            // tentukan value (sebelah kiri) dan labelnya (sebelah kanan)
+                $data[$row->id] = $row->jenis_data;
+            }
+        }
+        return $data;
+    }
+
     // get data by id
     function get_by_id($id)
     {
