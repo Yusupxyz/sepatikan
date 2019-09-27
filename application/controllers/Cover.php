@@ -6,17 +6,25 @@ class Cover extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->helper('form');
 	}
 	
 	public function index()
 	{
-		$data['title'] = 'Dashboard';
-		// $data['subtitle'] = '';
-        // $data['crumb'] = [
-        //     'Dashboard' => '',
-        // ];
-        //$this->layout->set_privilege(1);
-        // $data['page'] = 'Cover/index';
+        $data['options'] = array(
+						'0' => '--Pilih--',
+						'1' => 'Sungai Katingan',
+						'2' => 'Sungai Sebangau'
+						);
+		$data['options2'] = array(
+						'0' => '--Pilih--',
+						'1' => 'Data Penangkapan Ikan',
+						'2' => 'Data Ekologis/Lingkungan',
+						'3' => 'Data Sosisal Ekonomi Nelayan'
+						);
+		$data['attribute'] = 'class="form-control inline select2" ';
+		$data['attribute2'] = 'class="form-control" ';
+        $data['modal'] = 'Cover/modal';
 		$this->load->view('Cover/index', $data);
 	}
 

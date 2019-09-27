@@ -79,7 +79,7 @@ h1 {
           <br>
           <code>SUNGAI KATINGAN</code> DAN <code>SEBANGAU</code> KAWASAN TAMAN NASIONAL SEBANGAU </h1>
 
-        <button type="button" class="btn btn-danger" style="font-size: 25px;">INPUT DATA</button>&emsp;&emsp;&emsp;&emsp;
+        <button type="button" class="btn btn-danger" style="font-size: 25px;" data-toggle="modal" data-target="#modalAwal">INPUT DATA</button>&emsp;&emsp;&emsp;&emsp;
         <button type="button" class="btn btn-success" style="font-size: 25px;">LIHAT DATA</button>&emsp;&emsp;&emsp;&emsp;
         <button type="button" class="btn btn-info" style="font-size: 25px;">DESKRIPSI</button>
 
@@ -89,6 +89,8 @@ h1 {
         </div>
       </div>
     </div>
+
+    <?php $this->load->view($modal); ?>
 </body>
 
   <script src="<?= base_url('assets/bower_components/jquery/dist/jquery.min.js');?>"></script>
