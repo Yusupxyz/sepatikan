@@ -10,18 +10,18 @@
       </div>
 
       <!-- Modal body -->
-      <form action="<?= base_url('login'); ?>" method="post">
+      <form action="<?= base_url($action); ?>" method="post" id="form1">
       <div class="modal-body">
             Pilih perairan yang disurvey :
             <?php echo form_dropdown('sungai', $options, null, $attribute); ?>
             <br>
             Pilih jenis data yang direkam :
-            <?php echo form_dropdown('sungai', $options2, null, $attribute); ?>
+            <?php echo form_dropdown('jenis_data', $options2, null, $attribute2); ?>
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" disabled>Lanjut</button>
+        <button type="submit" id="submit1" class="btn btn-primary" disabled>Lanjut</button>
       </div>
       </form>
     </div>

@@ -26,7 +26,6 @@
     </div>
     <div class="login-box-body ">
       <p class="login-box-msg"><?php echo $subheading;?></p>
-        <div id="infoMessage" style="color: red"><?php echo $message;?></div>
       <?php echo form_open("auth/login/".$sungai."/".$jenis_data);?>
          <div class="form-group has-feedback">
           <label><?php echo lang('login_identity_label') ?></label>

@@ -22,7 +22,7 @@ $lang['error_csrf'] = 'This form post did not pass our security checks.';
 
 // Login
 $lang['login_heading']         = 'Login';
-$lang['login_subheading']      = 'Silakan login dengan email/username dan password anda.';
+$lang['login_subheading']      = 'INPUT DATA PENANGKAPAN IKAN';
 $lang['login_identity_label']  = 'Email/Username:';
 $lang['login_password_label']  = 'Kata Sandi:';
 $lang['login_remember_label']  = 'Ingatkan Saya:';
