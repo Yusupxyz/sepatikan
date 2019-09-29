@@ -17,7 +17,6 @@ class Auth extends CI_Controller
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
-		$this->load->model('Sungai_model');
 	}
 
 	/**
@@ -29,21 +28,21 @@ class Auth extends CI_Controller
 		if (!$this->ion_auth->logged_in())
 		{
 			// redirect them to the login page
-			redirect('login/'.$this->input->post('sungai').'/'.$this->input->post('jenis_data'), 'refresh');
+			redirect('login', 'refresh');
 		}
 		else
 		{
-			redirect('tahun');
+			redirect('dashboard');
 		}
 	}
 
 	/**
 	 * Log the user in
 	 */
-	public function login($sungai=null, $jenis_data=null)
+	public function login()
 	{
 		$this->data['title'] = $this->lang->line('login_heading');
-		$this->data['subheading'] = $sungai;
+
 		// validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
@@ -59,14 +58,14 @@ class Auth extends CI_Controller
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('tahun/pilih_tahun/'.$sungai.'/'.$jenis_data, 'refresh');
+				redirect('/', 'refresh');
 			}
 			else
 			{
 				// if the login was un-successful
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('login/'.$sungai.'/'.$jenis_data, 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				redirect('login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else
@@ -74,10 +73,7 @@ class Auth extends CI_Controller
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			$nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
-			$this->data['subheading'] = $this->lang->line('login_subheading')." ".strtoupper($nama_sungai);
-			$this->data['sungai'] = $sungai;
-			$this->data['jenis_data'] = $jenis_data;
+
 			$this->data['identity'] = array('name' => 'identity',
 				'id' => 'identity',
 				'type' => 'text',

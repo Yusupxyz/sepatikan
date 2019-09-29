@@ -13,8 +13,9 @@ class Tahun extends CI_Controller
         $this->layout->auth_privilege($c_url);
         $this->load->model('Tahun_model');
         $this->load->library('form_validation');
-        $this->load->helper(array('url', 'language'));
+        $this->load->helper(array('url', 'language', 'form'));
         $this->load->model('Sungai_model');
+        $this->load->model('Tahun_model');
     }
 
     public function index()
@@ -80,9 +81,12 @@ class Tahun extends CI_Controller
     public function pilih_tahun($sungai,$jenis_data)
     {
         $nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
-        $data['subheading'] = $this->lang->line('login_subheading')." ".strtoupper($nama_sungai);
+        $data['options'] = $this->Tahun_model->get_option();
+        $data['attribute'] = 'class="form-control inline" id="tahun"';
+        $data['subheading'] = "INPUT DATA PENANGKAPAN IKAN ".strtoupper($nama_sungai);
         $data['sungai'] = $sungai;
         $data['jenis_data'] = $jenis_data;
+        $data['action'] = 'dashboard';
         $this->load->view('tahun/index', $data);
     }
 

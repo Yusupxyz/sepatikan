@@ -27,7 +27,7 @@ class Sungai_model extends CI_Model
     {
         $this->db->order_by($this->id, $this->order);
         $result= $this->db->get($this->table);
-		$sungai[''] = '--Pilih--';
+		$sungai[''] = '--Pilih Sungai--';
         if ($result->num_rows() > 0) {
             foreach ($result->result() as $row) {
             // tentukan value (sebelah kiri) dan labelnya (sebelah kanan)
