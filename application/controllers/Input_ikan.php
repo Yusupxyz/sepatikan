@@ -22,7 +22,8 @@ class Input_ikan extends CI_Controller {
         ];
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
         //$this->layout->set_privilege(1);
-        // $data['code_js'] = 'Dashboard/codejs';
+        $data['action3'] = 'Cover';
+        $data['code_js'] = 'Input/codejs';
         $data['page'] = 'Input/Ikan';
 		$this->load->view('template/backend', $data);
 	}

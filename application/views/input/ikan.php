@@ -15,8 +15,8 @@
       <div class="box-body">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-12">
-                <?php echo anchor(site_url('sungai/create'),' Periode 1', 'class="btn bg-purple"'); ?>
-                <?php echo anchor(site_url('sungai/create'),' Periode 2', 'class="btn bg-red"'); ?>
+                <button  class="btn btn-default" type="button" onclick="p1()" id="p1">Periode 1 Nov-April <br> Musim Hujan</button>
+                <button class="btn btn-default" type="button" onclick="p2()" id="p2">Periode 2 Mei-Okt <br> Musim Kemarau</button>
                 <hr />
             </div>
         </div>
@@ -106,8 +106,8 @@
         </div>
         <div align="right">
             <button class="btn btn-primary" type="submit" onclick="cek()" id="submit"><i class="fa fa-save"></i> Simpan Data</button>
-            <button class="btn btn-warning" type="submit" onclick="cek()" id="submit"><i class="fa fa-arrow-right"></i> Stasiun Selanjutnya</button>
-            <button class="btn btn-success" type="submit" onclick="cek()" id="submit"><i class="fa fa-check"></i> Selesai</button>
+            <button class="btn btn-warning" type="submit" onclick="cek()" id=""><i class="fa fa-arrow-right"></i> Stasiun Selanjutnya</button>
+            <?php echo anchor(site_url('Auth/logout'),'<i class="fa fa-check"></i> Selesai', 'class="btn bg-green"'); ?>
         </div>
     </div>
     </div>
