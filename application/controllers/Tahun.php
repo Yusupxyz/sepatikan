@@ -10,7 +10,7 @@ class Tahun extends CI_Controller
         parent::__construct();
         $c_url = $this->router->fetch_class();
         $this->layout->auth(); 
-        $this->layout->auth_privilege($c_url);
+        // $this->layout->auth_privilege($c_url);
         $this->load->model('Tahun_model');
         $this->load->library('form_validation');
         $this->load->helper(array('url', 'language', 'form'));
@@ -86,7 +86,13 @@ class Tahun extends CI_Controller
         $data['subheading'] = "INPUT DATA PENANGKAPAN IKAN ".strtoupper($nama_sungai);
         $data['sungai'] = $sungai;
         $data['jenis_data'] = $jenis_data;
-        $data['action'] = 'dashboard';
+        if ($jenis_data=='1'){
+            $data['action'] = 'input_ikan/'.$sungai;
+        }elseif($jenis_data=='2'){
+            $data['action'] = 'input_ekologis/'.$sungai;
+        }else{
+            $data['action'] = 'input_sen/'.$sungai;
+        }
         $this->load->view('tahun/index', $data);
     }
 

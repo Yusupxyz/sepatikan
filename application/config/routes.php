@@ -57,4 +57,6 @@ $route['login'] = 'auth/login';
 $route['login/(:num)/(:any)'] = 'auth/login/$1/$2';
 $route['user'] = 'users';
 $route['admin'] = 'admin/dashboard';
+$route['input_ikan/(.*)/(.*)']='input_ikan/index/$1/$2';
+
 
