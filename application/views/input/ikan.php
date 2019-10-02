@@ -55,13 +55,13 @@
                 <tr>
                 <th><?= $i+1 ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="ikan"><br>
+                    <input  class="form-control" type="text" name="ikan[]"><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="hasil"><br>
+                    <input  class="form-control" type="text" name="hasil[]"><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="ukuran"><br>  
+                    <input  class="form-control" type="text" name="ukuran[]"><br>  
                 </th>
             </tr>
             <?php } ?>
@@ -105,7 +105,7 @@
             </table>   
         </div>
         <div align="right">
-            <button class="btn btn-primary" type="submit" onclick="cek()" id="submit"><i class="fa fa-save"></i> Simpan Data</button>
+            <button class="btn btn-primary" type="submit" onclick="save()" id="submit"><i class="fa fa-save"></i> Simpan Data</button>
             <button class="btn btn-warning" type="submit" onclick="cek()" id=""><i class="fa fa-arrow-right"></i> Stasiun Selanjutnya</button>
             <?php echo anchor(site_url('Auth/logout'),'<i class="fa fa-check"></i> Selesai', 'class="btn bg-green"'); ?>
         </div>

@@ -8,7 +8,7 @@ class Crudbuilder extends CI_Controller {
 		parent::__construct();
 		$this->layout->auth();
         $c_url = $this->router->fetch_class();
-        $this->layout->auth_privilege($c_url); 
+		$this->layout->auth_privilege($c_url); 
 	}
 	
 	public function index()

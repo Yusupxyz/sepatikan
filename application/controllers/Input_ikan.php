@@ -8,7 +8,8 @@ class Input_ikan extends CI_Controller {
 		parent::__construct();
 		$this->layout->auth();
         $this->load->model('Sungai_model');
-        $this->load->model('Tahun_model');
+		$this->load->model('Tahun_model');
+		$this->load->model('Stasiun_model');
 	}
 	
 	public function index($sungai,$tahun)
@@ -26,6 +27,32 @@ class Input_ikan extends CI_Controller {
         $data['code_js'] = 'Input/codejs';
         $data['page'] = 'Input/Ikan';
 		$this->load->view('template/backend', $data);
+	}
+
+	public function saveStasiun(){
+		$data = array(
+			'stasiun'  => $this->input->post('stasiun'), 
+			'desa'  => $this->input->post('desa'), 
+			'koordinat' => $this->input->post('koordinat'), 
+		);
+		$result=$this->Stasiun_model->insert($data);
+		echo json_encode($result);
+	}
+
+	public function saveDataIkan(){
+		$name = $this->input->post('name');
+
+		foreach($name as $key ) {
+			$data = array(
+				'id_stasiun' => $id,
+				'id_periode' => $id,
+				'stasiun'  => $name, 
+				'desa'  => $this->input->post('desa'), 
+				'koordinat' => $this->input->post('koordinat'), 
+			);
+			$result=$this->Stasiun_model->insert($data);
+		}
+		echo json_encode($result);
 	}
 
 }
