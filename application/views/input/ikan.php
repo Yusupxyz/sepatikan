@@ -55,13 +55,13 @@
                 <tr>
                 <th><?= $i+1 ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="ikan[]"><br>
+                    <input  class="form-control" type="text" name="ikan[]" placeholder="Masukkan Nama Ikan"><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="hasil[]"><br>
+                    <input  class="form-control" type="text" name="hasil[]" placeholder="Masukkan Hasil"><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="ukuran[]"><br>  
+                    <input  class="form-control" type="text" name="ukuran[]" placeholder="Masukkan Ukuran"><br>  
                 </th>
             </tr>
             <?php } ?>
@@ -83,7 +83,7 @@
                 <tr>
                 <th><?= $i+1 ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="ikan"><br>
+                    <input  class="form-control" type="text" name="ikan" placeholder="Masukkan jenis alat tangkap utama"><br>
                 </th>
             </tr>
             <?php } ?>
@@ -98,7 +98,7 @@
                 <tr>
                 <th ><?= $i+1 ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="ikan"><br>
+                    <input  class="form-control" type="text" name="ikan" placeholder="Masukkan lokasi penangkapan"><br>
                 </th>
             </tr>
             <?php } ?>

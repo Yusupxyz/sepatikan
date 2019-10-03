@@ -14,6 +14,7 @@ class Input_ikan extends CI_Controller {
 	
 	public function index($sungai,$tahun)
 	{
+		$data['id_tahun'] = $tahun;
         $nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
         $tahun = $this->Tahun_model->get_by_id($tahun)->tahun;
 		$data['title'] = 'INPUT DATA PENANGKAPAN IKAN '.strtoupper($nama_sungai);
@@ -22,7 +23,6 @@ class Input_ikan extends CI_Controller {
             'Input Ikan' => '',
         ];
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
-        //$this->layout->set_privilege(1);
         $data['action3'] = 'Cover';
         $data['code_js'] = 'Input/codejs';
         $data['page'] = 'Input/Ikan';
@@ -30,27 +30,32 @@ class Input_ikan extends CI_Controller {
 	}
 
 	public function saveStasiun(){
+		$id=uniqid();
 		$data = array(
+			'id' => $id,
 			'stasiun'  => $this->input->post('stasiun'), 
 			'desa'  => $this->input->post('desa'), 
 			'koordinat' => $this->input->post('koordinat'), 
 		);
 		$result=$this->Stasiun_model->insert($data);
-		echo json_encode($result);
+		echo json_encode($id);
 	}
 
 	public function saveDataIkan(){
-		$name = $this->input->post('name');
-
-		foreach($name as $key ) {
+		$ikan = $this->input->post('ikan');
+		$hasil = $this->input->post('hasil');
+		$ukuran = $this->input->post('ukuran');
+		$i=0;
+		foreach($ikan as $key => $value ) {
 			$data = array(
-				'id_stasiun' => $id,
-				'id_periode' => $id,
-				'stasiun'  => $name, 
-				'desa'  => $this->input->post('desa'), 
-				'koordinat' => $this->input->post('koordinat'), 
+				'id_stasiun' => $this->input->post('id_stasiun'),
+				'id_periode' => $this->input->post('id_tahun'),
+				'stasiun'  => $value, 
+				'hasil'  => $hasil[$i], 
+				'ukuran' => $ukuran[$i]
 			);
 			$result=$this->Stasiun_model->insert($data);
+			$i++;
 		}
 		echo json_encode($result);
 	}
