@@ -58,10 +58,10 @@
                     <input  class="form-control" type="text" name="ikan[]" placeholder="Masukkan Nama Ikan"><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="hasil[]" placeholder="Masukkan Hasil"><br>
+                    <input  class="form-control" type="number" name="hasil[]" placeholder="Masukkan Hasil"><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="ukuran[]" placeholder="Masukkan Ukuran"><br>  
+                    <input  class="form-control" type="number" name="ukuran[]" placeholder="Masukkan Ukuran"><br>  
                 </th>
             </tr>
             <?php } ?>
@@ -72,7 +72,7 @@
               <p class="text-left bg-success">Rata rata hasil tangkapan total per nelayan per hari (kg/hari/nelayan) pada periode ini</p>
         </div>
         <div class=" col-xs-12 col-md-8">
-            <input  class="form-control" type="text" name="rata" placeholder="Masukkan rata-rata hasil tangkapan"><br>
+            <input  class="form-control" type="number" name="rata" id="rata" placeholder="Masukkan rata-rata hasil tangkapan"><br>
         </div>
         <div class=" col-xs-12 col-md-4">
               <p class="text-left bg-success">Jenis alat tangkap utama yang digunakan pada periode ini</p>
@@ -83,7 +83,7 @@
                 <tr>
                 <th><?= $i+1 ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="ikan" placeholder="Masukkan jenis alat tangkap utama"><br>
+                    <input  class="form-control" type="text" name="alat[]" placeholder="Masukkan jenis alat tangkap utama"><br>
                 </th>
             </tr>
             <?php } ?>
@@ -98,7 +98,7 @@
                 <tr>
                 <th ><?= $i+1 ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="ikan" placeholder="Masukkan lokasi penangkapan"><br>
+                    <input  class="form-control" type="text" name="lokasi[]" placeholder="Masukkan lokasi penangkapan"><br>
                 </th>
             </tr>
             <?php } ?>

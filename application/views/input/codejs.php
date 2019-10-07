@@ -1,5 +1,5 @@
 <script type="text/javascript">
-var periode;
+var periode=0;
 var stasiun=1;
 var id_stasiun;
 function p1() {
@@ -16,19 +16,26 @@ function p2() {
 
 function save() {
     //input stasiun
-    $.ajax({
-        type : "POST",
-        url  : "<?php echo site_url('input_ikan/saveStasiun')?>",
-        dataType : "JSON",
-        data : {stasiun:stasiun, desa:document.getElementById("desa").value, koordinat:document.getElementById("koordinat").value},
-        success: function(data){
-            id_stasiun = data;
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR, textStatus, errorThrown);
-        }
-    });  
+    if (periode==0){
+        alert("Pilih periode terlebih dahulu");
+    }else{
+        $.ajax({
+            type : "POST",
+            url  : "<?php echo site_url('input_ikan/saveStasiun')?>",
+            dataType : "JSON",
+            data : {stasiun:stasiun, desa:document.getElementById("desa").value, koordinat:document.getElementById("koordinat").value},
+            success: function(data){
+                id_stasiun = data;
+                saveIkan(id_stasiun);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown);
+            }
+        });  
+    }
+}
 
+function saveIkan(id) {
     //input data tangkapan ikan
     var ikan = $('input[name="ikan[]"]').map(function(){ 
                     return this.value; 
@@ -40,20 +47,67 @@ function save() {
                     return this.value; 
                 }).get();
     var id_tahun = <?= $id_tahun ?>;
-
     $.ajax({
         type : "POST",
         url  : "<?php echo site_url('input_ikan/saveDataIkan')?>",
         dataType : "JSON",
-        data : { 'ikan[]':ikan, 'hasil[]':hasil, 'ukuran[]':ukuran, id_tahun : id_tahun, id_stasiun : id_stasiun},
+        data : { 'ikan[]':ikan, 'hasil[]':hasil, 'ukuran[]':ukuran, id_periode : periode, id_st : id},
         success: function(data){
             console.log(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);
         }
-    });   
+    }); 
 
+    //input Rata rata hasil tangkapan total 
+    $.ajax({
+        type : "POST",
+        url  : "<?php echo site_url('input_ikan/saveDataRata')?>",
+        dataType : "JSON",
+        data : {id_periode : periode, id_st : id, rata : document.getElementById("rata").value},
+        success: function(data){
+            console.log(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+    });  
+
+    //input Jenis alat tangkap
+    var alat = $('input[name="alat[]"]').map(function(){ 
+                    return this.value; 
+                }).get();
+    $.ajax({
+        type : "POST",
+        url  : "<?php echo site_url('input_ikan/saveDataAlat')?>",
+        dataType : "JSON",
+        data : { 'alat[]':alat, id_periode : periode, id_st : id},
+        success: function(data){
+            console.log(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+    }); 
+
+    //input Lokasi pengakapan
+    var lokasi = $('input[name="lokasi[]"]').map(function(){ 
+                    return this.value; 
+                }).get();
+    $.ajax({
+        type : "POST",
+        url  : "<?php echo site_url('input_ikan/saveDataLokasi')?>",
+        dataType : "JSON",
+        data : { 'lokasi[]':lokasi, id_periode : periode, id_st : id},
+        success: function(data){
+            console.log(data);
+            alert("Data tersimpan");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+    }); 
 }
 
 </script>

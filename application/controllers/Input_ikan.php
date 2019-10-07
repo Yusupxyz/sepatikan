@@ -10,6 +10,10 @@ class Input_ikan extends CI_Controller {
         $this->load->model('Sungai_model');
 		$this->load->model('Tahun_model');
 		$this->load->model('Stasiun_model');
+		$this->load->model('Data_tangkapan_ikan_model');
+		$this->load->model('Rata_tangkapan_ikan_model');
+		$this->load->model('Alat_tangkapan_ikan_model');
+		$this->load->model('Lokasi_tangkapan_ikan_model');
 	}
 	
 	public function index($sungai,$tahun)
@@ -38,6 +42,7 @@ class Input_ikan extends CI_Controller {
 			'koordinat' => $this->input->post('koordinat'), 
 		);
 		$result=$this->Stasiun_model->insert($data);
+		header('Content-type: application/json');
 		echo json_encode($id);
 	}
 
@@ -47,15 +52,62 @@ class Input_ikan extends CI_Controller {
 		$ukuran = $this->input->post('ukuran');
 		$i=0;
 		foreach($ikan as $key => $value ) {
-			$data = array(
-				'id_stasiun' => $this->input->post('id_stasiun'),
-				'id_periode' => $this->input->post('id_tahun'),
-				'stasiun'  => $value, 
-				'hasil'  => $hasil[$i], 
-				'ukuran' => $ukuran[$i]
-			);
-			$result=$this->Stasiun_model->insert($data);
-			$i++;
+			if ($value!='' || $value!=null){
+				$data = array(
+					'id_stasiun' => $this->input->post('id_st'),
+					'id_periode' => $this->input->post('id_periode'),
+					'ikan'  => $value, 
+					'hasil'  => $hasil[$i], 
+					'ukuran' => $ukuran[$i]
+				);
+				$result=$this->Data_tangkapan_ikan_model->insert($data);
+				$i++;
+			}
+		}
+		echo json_encode($result);
+	}
+
+	public function saveDataRata(){
+		$data = array(
+			'id_stasiun' => $this->input->post('id_st'),
+			'id_periode' => $this->input->post('id_periode'),
+			'rata_rata' => $this->input->post('rata')
+		);
+		$result=$this->Rata_tangkapan_ikan_model->insert($data);
+		header('Content-type: application/json');
+		echo json_encode($result);
+	}
+
+	public function saveDataAlat(){
+		$alat = $this->input->post('alat');
+		$i=0;
+		foreach($alat as $key => $value ) {
+			if ($value!='' || $value!=null){
+				$data = array(
+					'id_stasiun' => $this->input->post('id_st'),
+					'id_periode' => $this->input->post('id_periode'),
+					'alat'  => $value
+				);
+				$result=$this->Alat_tangkapan_ikan_model->insert($data);
+				$i++;
+			}
+		}
+		echo json_encode($result);
+	}
+
+	public function saveDataLokasi(){
+		$lokasi = $this->input->post('lokasi');
+		$i=0;
+		foreach($lokasi as $key => $value ) {
+			if ($value!='' || $value!=null){
+				$data = array(
+					'id_stasiun' => $this->input->post('id_st'),
+					'id_periode' => $this->input->post('id_periode'),
+					'lokasi'  => $value
+				);
+				$result=$this->Lokasi_tangkapan_ikan_model->insert($data);
+				$i++;
+			}
 		}
 		echo json_encode($result);
 	}
