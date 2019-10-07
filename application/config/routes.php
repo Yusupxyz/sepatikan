@@ -59,5 +59,6 @@ $route['user'] = 'users';
 $route['admin'] = 'admin/dashboard';
 $route['input_ikan/(.*)/(.*)']='input_ikan/index/$1/$2';
 $route['input_ekologis/(.*)/(.*)']='input_ekologis/index/$1/$2';
+$route['input_sen/(.*)/(.*)']='input_sen/index/$1/$2';
 
 
