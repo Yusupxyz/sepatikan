@@ -26,24 +26,26 @@
         </style>
 </head>
 <body>
-    <h3 align="center">DATA Paramter Ekologis</h3>
+    <h3 align="center">DATA Data Ekologis</h3>
     <h4>Tanggal Cetak : <?= date("d/M/Y");?> </h4>
     <table class="word-table" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
-		<th>Id</th>
-		<th>Parameter</th>
-		<th>Jenis</th>
+		<th>Id Ekologis</th>
+		<th>Id Stasiun</th>
+		<th>Id Parameter</th>
+		<th>Data</th>
 		
             </tr><?php
-            foreach ($paramter_ekologis_data as $paramter_ekologis)
+            foreach ($data_ekologis_data as $data_ekologis)
             {
                 ?>
                 <tr>
 		      <td><?php echo ++$start ?></td>
-		      <td><?php echo $paramter_ekologis->id ?></td>
-		      <td><?php echo $paramter_ekologis->parameter ?></td>
-		      <td><?php echo $paramter_ekologis->jenis ?></td>	
+		      <td><?php echo $data_ekologis->id_ekologis ?></td>
+		      <td><?php echo $data_ekologis->id_stasiun ?></td>
+		      <td><?php echo $data_ekologis->id_parameter ?></td>
+		      <td><?php echo $data_ekologis->data ?></td>	
                 </tr>
                 <?php
             }

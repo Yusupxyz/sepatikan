@@ -22,6 +22,10 @@
             <label for="varchar">Parameter <?php echo form_error('parameter') ?></label>
             <input type="text" class="form-control" name="parameter" id="parameter" placeholder="Parameter" value="<?php echo $parameter; ?>" />
         </div>
+	    <div class="form-group">
+            <label for="char">Jenis <?php echo form_error('jenis') ?></label>
+            <input type="text" class="form-control" name="jenis" id="jenis" placeholder="Jenis" value="<?php echo $jenis; ?>" />
+        </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('paramter_ekologis') ?>" class="btn btn-default">Cancel</a>
 	</form>
