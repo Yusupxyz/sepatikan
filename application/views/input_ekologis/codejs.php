@@ -23,7 +23,7 @@ function save() {
         var id_tahun = <?= $id_tahun ?>;
         $.ajax({
             type : "POST",
-            url  : "<?php echo site_url('input_ikan/saveStasiun')?>",
+            url  : "<?php echo site_url('input_ekologis/saveStasiun')?>",
             dataType : "JSON",
             data : {stasiun:stasiun, desa:document.getElementById("desa").value, koordinat:document.getElementById("koordinat").value, id_sungai : id_sungai, id_tahun : id_tahun,  id_periode : periode},
             success: function(data){

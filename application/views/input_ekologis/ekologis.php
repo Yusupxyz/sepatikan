@@ -47,7 +47,7 @@
                 <th>Data Pengamatan</th>
             </tr>
             <?php $i=1; foreach ($parameter as $key => $value) { ?>
-                <input   type="hidden" name="id_ekologis[]" value="<?= $value->id ?>"><br>
+                <input   type="hidden" name="id_ekologis[]" value="<?= $value->id ?>">
                 <tr>
                 <th><?= $i++ ?>.</th>
                 <th>
@@ -59,47 +59,22 @@
             </tr>
             <?php } ?>
 
-            
+            <?php for ($j=0; $j < 5; $j++) { ?>
+                <input   type="hidden" name="id_ekologis[]" value="0">
+                <tr>
+                <th><?= $i++ ?>.</th>
+                <th>
+                    <input  class="form-control" type="text" name="parameter[]" placeholder="Masukkan Nama Parameter"><br>
+                </th>
+                <th>
+                    <input  class="form-control" type="text" name="data[]" placeholder="Masukkan Data Pengamatan"><br>
+                </th>
+            </tr>
+            <?php } ?>
 
             
             </table>   
         </div> 
-        <div class=" col-xs-12 col-md-4">
-              <p class="text-left bg-success">Rata rata hasil tangkapan total per nelayan per hari (kg/hari/nelayan) pada periode ini</p>
-        </div>
-        <div class=" col-xs-12 col-md-8">
-            <input  class="form-control" type="number" name="rata" id="rata" placeholder="Masukkan rata-rata hasil tangkapan"><br>
-        </div>
-        <div class=" col-xs-12 col-md-4">
-              <p class="text-left bg-success">Jenis alat tangkap utama yang digunakan pada periode ini</p>
-        </div>
-        <div class=" col-xs-12 col-md-8">
-            <table class="table table-striped text-left" >
-            <?php for ($i=0; $i < 4; $i++) { ?>
-                <tr>
-                <th><?= $i+1 ?>.</th>
-                <th>
-                    <input  class="form-control" type="text" name="alat[]" placeholder="Masukkan jenis alat tangkap utama"><br>
-                </th>
-            </tr>
-            <?php } ?>
-            </table>   
-        </div>
-        <div class=" col-xs-12 col-md-4">
-              <p class="text-left bg-success">Lokasi pengakapan utama pada periode ini</p>
-        </div>
-        <div class=" col-xs-12 col-md-8">
-        <table class="table table-striped text-left" >
-            <?php for ($i=0; $i < 4; $i++) { ?>
-                <tr>
-                <th ><?= $i+1 ?>.</th>
-                <th>
-                    <input  class="form-control" type="text" name="lokasi[]" placeholder="Masukkan lokasi penangkapan"><br>
-                </th>
-            </tr>
-            <?php } ?>
-            </table>   
-        </div>
         </form>
 
         <div align="right">
