@@ -19,6 +19,7 @@ class Input_ikan extends CI_Controller {
 	public function index($sungai,$tahun)
 	{
 		$data['id_tahun'] = $tahun;
+		$data['id_sungai'] = $sungai;
         $nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
         $tahun = $this->Tahun_model->get_by_id($tahun)->tahun;
 		$data['title'] = 'INPUT DATA PENANGKAPAN IKAN '.strtoupper($nama_sungai);
@@ -28,8 +29,8 @@ class Input_ikan extends CI_Controller {
         ];
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
         $data['action3'] = 'Cover';
-        $data['code_js'] = 'Input/codejs';
-        $data['page'] = 'Input/Ikan';
+        $data['code_js'] = 'Input_ikan/codejs';
+        $data['page'] = 'Input_ikan/Ikan';
 		$this->load->view('template/backend', $data);
 	}
 
@@ -40,6 +41,9 @@ class Input_ikan extends CI_Controller {
 			'stasiun'  => $this->input->post('stasiun'), 
 			'desa'  => $this->input->post('desa'), 
 			'koordinat' => $this->input->post('koordinat'), 
+			'id_sungai' => $this->input->post('id_sungai'), 
+			'id_tahun' => $this->input->post('id_tahun'), 
+			'id_periode' => $this->input->post('id_periode'), 
 		);
 		$result=$this->Stasiun_model->insert($data);
 		header('Content-type: application/json');
@@ -55,7 +59,6 @@ class Input_ikan extends CI_Controller {
 			if ($value!='' || $value!=null){
 				$data = array(
 					'id_stasiun' => $this->input->post('id_st'),
-					'id_periode' => $this->input->post('id_periode'),
 					'ikan'  => $value, 
 					'hasil'  => $hasil[$i], 
 					'ukuran' => $ukuran[$i]
@@ -70,7 +73,6 @@ class Input_ikan extends CI_Controller {
 	public function saveDataRata(){
 		$data = array(
 			'id_stasiun' => $this->input->post('id_st'),
-			'id_periode' => $this->input->post('id_periode'),
 			'rata_rata' => $this->input->post('rata')
 		);
 		$result=$this->Rata_tangkapan_ikan_model->insert($data);
@@ -85,7 +87,6 @@ class Input_ikan extends CI_Controller {
 			if ($value!='' || $value!=null){
 				$data = array(
 					'id_stasiun' => $this->input->post('id_st'),
-					'id_periode' => $this->input->post('id_periode'),
 					'alat'  => $value
 				);
 				$result=$this->Alat_tangkapan_ikan_model->insert($data);
@@ -102,7 +103,6 @@ class Input_ikan extends CI_Controller {
 			if ($value!='' || $value!=null){
 				$data = array(
 					'id_stasiun' => $this->input->post('id_st'),
-					'id_periode' => $this->input->post('id_periode'),
 					'lokasi'  => $value
 				);
 				$result=$this->Lokasi_tangkapan_ikan_model->insert($data);

@@ -14,6 +14,7 @@ class Input_ekologis extends CI_Controller {
 		$this->load->model('Rata_tangkapan_ikan_model');
 		$this->load->model('Alat_tangkapan_ikan_model');
 		$this->load->model('Lokasi_tangkapan_ikan_model');
+		$this->load->model('Paramter_ekologis_model');
 	}
 	
 	public function index($sungai,$tahun)
@@ -21,15 +22,16 @@ class Input_ekologis extends CI_Controller {
 		$data['id_tahun'] = $tahun;
         $nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
         $tahun = $this->Tahun_model->get_by_id($tahun)->tahun;
-		$data['title'] = 'INPUT DATA PENANGKAPAN IKAN '.strtoupper($nama_sungai);
+		$data['title'] = 'INPUT DATA EKOLOGIS / LINGKUNGAN '.strtoupper($nama_sungai);
 		$data['subtitle'] = '';
         $data['crumb'] = [
-            'Input Ikan' => '',
+            'Input Ekologis' => '',
         ];
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
+        $data['parameter'] = $this->Paramter_ekologis_model->get_all();
         $data['action3'] = 'Cover';
-        $data['code_js'] = 'Input/codejs';
-        $data['page'] = 'Input/Ikan';
+        $data['code_js'] = 'Input_ekologis/codejs';
+        $data['page'] = 'Input_ekologis/ekologis';
 		$this->load->view('template/backend', $data);
 	}
 
@@ -40,6 +42,8 @@ class Input_ekologis extends CI_Controller {
 			'stasiun'  => $this->input->post('stasiun'), 
 			'desa'  => $this->input->post('desa'), 
 			'koordinat' => $this->input->post('koordinat'), 
+			'id_tahun' => $this->input->post('id_tahun'), 
+			'id_periode' => $this->input->post('id_periode'), 
 		);
 		$result=$this->Stasiun_model->insert($data);
 		header('Content-type: application/json');
@@ -55,7 +59,6 @@ class Input_ekologis extends CI_Controller {
 			if ($value!='' || $value!=null){
 				$data = array(
 					'id_stasiun' => $this->input->post('id_st'),
-					'id_periode' => $this->input->post('id_periode'),
 					'ikan'  => $value, 
 					'hasil'  => $hasil[$i], 
 					'ukuran' => $ukuran[$i]
@@ -70,7 +73,6 @@ class Input_ekologis extends CI_Controller {
 	public function saveDataRata(){
 		$data = array(
 			'id_stasiun' => $this->input->post('id_st'),
-			'id_periode' => $this->input->post('id_periode'),
 			'rata_rata' => $this->input->post('rata')
 		);
 		$result=$this->Rata_tangkapan_ikan_model->insert($data);
@@ -85,7 +87,6 @@ class Input_ekologis extends CI_Controller {
 			if ($value!='' || $value!=null){
 				$data = array(
 					'id_stasiun' => $this->input->post('id_st'),
-					'id_periode' => $this->input->post('id_periode'),
 					'alat'  => $value
 				);
 				$result=$this->Alat_tangkapan_ikan_model->insert($data);
@@ -102,7 +103,6 @@ class Input_ekologis extends CI_Controller {
 			if ($value!='' || $value!=null){
 				$data = array(
 					'id_stasiun' => $this->input->post('id_st'),
-					'id_periode' => $this->input->post('id_periode'),
 					'lokasi'  => $value
 				);
 				$result=$this->Lokasi_tangkapan_ikan_model->insert($data);

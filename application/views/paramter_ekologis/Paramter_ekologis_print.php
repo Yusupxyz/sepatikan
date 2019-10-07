@@ -26,24 +26,22 @@
         </style>
 </head>
 <body>
-    <h3 align="center">DATA Lokasi Tangkapan Ikan</h3>
+    <h3 align="center">DATA Paramter Ekologis</h3>
     <h4>Tanggal Cetak : <?= date("d/M/Y");?> </h4>
     <table class="word-table" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
 		<th>Id</th>
-		<th>Id Stasiun</th>
-		<th>Lokasi</th>
+		<th>Parameter</th>
 		
             </tr><?php
-            foreach ($lokasi_tangkapan_ikan_data as $lokasi_tangkapan_ikan)
+            foreach ($paramter_ekologis_data as $paramter_ekologis)
             {
                 ?>
                 <tr>
 		      <td><?php echo ++$start ?></td>
-		      <td><?php echo $lokasi_tangkapan_ikan->id ?></td>
-		      <td><?php echo $lokasi_tangkapan_ikan->id_stasiun ?></td>
-		      <td><?php echo $lokasi_tangkapan_ikan->lokasi ?></td>	
+		      <td><?php echo $paramter_ekologis->id ?></td>
+		      <td><?php echo $paramter_ekologis->parameter ?></td>	
                 </tr>
                 <?php
             }

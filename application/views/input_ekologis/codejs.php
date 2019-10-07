@@ -19,11 +19,13 @@ function save() {
     if (periode==0){
         alert("Pilih periode terlebih dahulu");
     }else{
+        var id_sungai = <?= $id_sungai ?>;
+        var id_tahun = <?= $id_tahun ?>;
         $.ajax({
             type : "POST",
             url  : "<?php echo site_url('input_ikan/saveStasiun')?>",
             dataType : "JSON",
-            data : {stasiun:stasiun, desa:document.getElementById("desa").value, koordinat:document.getElementById("koordinat").value},
+            data : {stasiun:stasiun, desa:document.getElementById("desa").value, koordinat:document.getElementById("koordinat").value, id_sungai : id_sungai, id_tahun : id_tahun,  id_periode : periode},
             success: function(data){
                 id_stasiun = data;
                 saveIkan(id_stasiun);
@@ -58,7 +60,7 @@ function saveIkan(id) {
         type : "POST",
         url  : "<?php echo site_url('input_ikan/saveDataIkan')?>",
         dataType : "JSON",
-        data : { 'ikan[]':ikan, 'hasil[]':hasil, 'ukuran[]':ukuran, id_periode : periode, id_st : id},
+        data : { 'ikan[]':ikan, 'hasil[]':hasil, 'ukuran[]':ukuran, id_st : id},
         success: function(data){
             console.log(data);
         },
@@ -72,7 +74,7 @@ function saveIkan(id) {
         type : "POST",
         url  : "<?php echo site_url('input_ikan/saveDataRata')?>",
         dataType : "JSON",
-        data : {id_periode : periode, id_st : id, rata : document.getElementById("rata").value},
+        data : {id_st : id, rata : document.getElementById("rata").value},
         success: function(data){
             console.log(data);
         },
@@ -89,7 +91,7 @@ function saveIkan(id) {
         type : "POST",
         url  : "<?php echo site_url('input_ikan/saveDataAlat')?>",
         dataType : "JSON",
-        data : { 'alat[]':alat, id_periode : periode, id_st : id},
+        data : { 'alat[]':alat, id_st : id},
         success: function(data){
             console.log(data);
         },
@@ -106,7 +108,7 @@ function saveIkan(id) {
         type : "POST",
         url  : "<?php echo site_url('input_ikan/saveDataLokasi')?>",
         dataType : "JSON",
-        data : { 'lokasi[]':lokasi, id_periode : periode, id_st : id},
+        data : { 'lokasi[]':lokasi, id_st : id},
         success: function(data){
             console.log(data);
             alert("Data tersimpan");

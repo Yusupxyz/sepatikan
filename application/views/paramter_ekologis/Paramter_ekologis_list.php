@@ -2,7 +2,7 @@
 <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Lokasi_tangkapan_ikan</h3>
+        <h3 class="box-title">Paramter_ekologis</h3>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -15,7 +15,7 @@
       <div class="box-body">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('lokasi_tangkapan_ikan/create'),'<i class="fa fa-plus"></i> Create', 'class="btn bg-purple"'); ?>
+                <?php echo anchor(site_url('paramter_ekologis/create'),'<i class="fa fa-plus"></i> Create', 'class="btn bg-purple"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-1 text-right">
             </div>
-            <div class="col-md-3 text-right"><form action="<?php echo site_url('lokasi_tangkapan_ikan/index'); ?>" class="form-inline" method="get" style="margin-top:10px">
+            <div class="col-md-3 text-right"><form action="<?php echo site_url('paramter_ekologis/index'); ?>" class="form-inline" method="get" style="margin-top:10px">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
@@ -32,7 +32,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('lokasi_tangkapan_ikan'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('paramter_ekologis'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -42,34 +42,32 @@
                 </form>
             </div>
         </div>
-        <form method="post" action="<?= site_url('lokasi_tangkapan_ikan/deletebulk');?>" id="formbulk">
+        <form method="post" action="<?= site_url('paramter_ekologis/deletebulk');?>" id="formbulk">
         <table class="table table-bordered" style="margin-bottom: 10px" style="width:100%">
             <tr>
                 <th style="width: 10px;"><input type="checkbox" name="selectall" /></th>
                 <th>No</th>
 		<th>Id</th>
-		<th>Id Stasiun</th>
-		<th>Lokasi</th>
+		<th>Parameter</th>
 		<th>Action</th>
             </tr><?php
-            foreach ($lokasi_tangkapan_ikan_data as $lokasi_tangkapan_ikan)
+            foreach ($paramter_ekologis_data as $paramter_ekologis)
             {
                 ?>
                 <tr>
                 
-		<td  style="width: 10px;padding-left: 8px;"><input type="checkbox" name="id" value="<?= $lokasi_tangkapan_ikan->id;?>" />&nbsp;</td>
+		<td  style="width: 10px;padding-left: 8px;"><input type="checkbox" name="id" value="<?= $paramter_ekologis->id;?>" />&nbsp;</td>
                 
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $lokasi_tangkapan_ikan->id ?></td>
-			<td><?php echo $lokasi_tangkapan_ikan->id_stasiun ?></td>
-			<td><?php echo $lokasi_tangkapan_ikan->lokasi ?></td>
+			<td><?php echo $paramter_ekologis->id ?></td>
+			<td><?php echo $paramter_ekologis->parameter ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('lokasi_tangkapan_ikan/read/'.$lokasi_tangkapan_ikan->id),'<i class="fa fa-search"></i>', 'class="btn btn-xs btn-primary"  data-toggle="tooltip" title="Detail"'); 
+				echo anchor(site_url('paramter_ekologis/read/'.$paramter_ekologis->id),'<i class="fa fa-search"></i>', 'class="btn btn-xs btn-primary"  data-toggle="tooltip" title="Detail"'); 
 				echo ' '; 
-				echo anchor(site_url('lokasi_tangkapan_ikan/update/'.$lokasi_tangkapan_ikan->id),' <i class="fa fa-edit"></i>', 'class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit"'); 
+				echo anchor(site_url('paramter_ekologis/update/'.$paramter_ekologis->id),' <i class="fa fa-edit"></i>', 'class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit"'); 
 				echo ' '; 
-				echo anchor(site_url('lokasi_tangkapan_ikan/delete/'.$lokasi_tangkapan_ikan->id),' <i class="fa fa-trash"></i>','class="btn btn-xs btn-danger" onclick="javasciprt: return confirmdelete(\'lokasi_tangkapan_ikan/delete/'.$lokasi_tangkapan_ikan->id.'\')"  data-toggle="tooltip" title="Delete" '); 
+				echo anchor(site_url('paramter_ekologis/delete/'.$paramter_ekologis->id),' <i class="fa fa-trash"></i>','class="btn btn-xs btn-danger" onclick="javasciprt: return confirmdelete(\'paramter_ekologis/delete/'.$paramter_ekologis->id.'\')"  data-toggle="tooltip" title="Delete" '); 
 				?>
 			</td>
 		</tr>

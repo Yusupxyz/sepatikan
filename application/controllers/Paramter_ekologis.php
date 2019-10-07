@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Lokasi_tangkapan_ikan extends CI_Controller
+class Paramter_ekologis extends CI_Controller
 {
     function __construct()
     {
@@ -11,7 +11,7 @@ class Lokasi_tangkapan_ikan extends CI_Controller
         $c_url = $this->router->fetch_class();
         $this->layout->auth(); 
         $this->layout->auth_privilege($c_url);
-        $this->load->model('Lokasi_tangkapan_ikan_model');
+        $this->load->model('Paramter_ekologis_model');
         $this->load->library('form_validation');
     }
 
@@ -21,58 +21,57 @@ class Lokasi_tangkapan_ikan extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'lokasi_tangkapan_ikan?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'lokasi_tangkapan_ikan?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'paramter_ekologis?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'paramter_ekologis?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'lokasi_tangkapan_ikan';
-            $config['first_url'] = base_url() . 'lokasi_tangkapan_ikan';
+            $config['base_url'] = base_url() . 'paramter_ekologis';
+            $config['first_url'] = base_url() . 'paramter_ekologis';
         }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Lokasi_tangkapan_ikan_model->total_rows($q);
-        $lokasi_tangkapan_ikan = $this->Lokasi_tangkapan_ikan_model->get_limit_data($config['per_page'], $start, $q);
+        $config['total_rows'] = $this->Paramter_ekologis_model->total_rows($q);
+        $paramter_ekologis = $this->Paramter_ekologis_model->get_limit_data($config['per_page'], $start, $q);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
         $data = array(
-            'lokasi_tangkapan_ikan_data' => $lokasi_tangkapan_ikan,
+            'paramter_ekologis_data' => $paramter_ekologis,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $data['title'] = 'Lokasi Tangkapan Ikan';
+        $data['title'] = 'Paramter Ekologis';
         $data['subtitle'] = '';
         $data['crumb'] = [
-            'Lokasi Tangkapan Ikan' => '',
+            'Paramter Ekologis' => '',
         ];
-        $data['code_js'] = 'lokasi_tangkapan_ikan/codejs';
-        $data['page'] = 'lokasi_tangkapan_ikan/Lokasi_tangkapan_ikan_list';
+        $data['code_js'] = 'paramter_ekologis/codejs';
+        $data['page'] = 'paramter_ekologis/Paramter_ekologis_list';
         $this->load->view('template/backend', $data);
     }
 
     public function read($id) 
     {
-        $row = $this->Lokasi_tangkapan_ikan_model->get_by_id($id);
+        $row = $this->Paramter_ekologis_model->get_by_id($id);
         if ($row) {
             $data = array(
 		'id' => $row->id,
-		'id_stasiun' => $row->id_stasiun,
-		'lokasi' => $row->lokasi,
+		'parameter' => $row->parameter,
 	    );
-        $data['title'] = 'Lokasi Tangkapan Ikan';
+        $data['title'] = 'Paramter Ekologis';
         $data['subtitle'] = '';
         $data['crumb'] = [
             'Dashboard' => '',
         ];
 
-        $data['page'] = 'lokasi_tangkapan_ikan/Lokasi_tangkapan_ikan_read';
+        $data['page'] = 'paramter_ekologis/Paramter_ekologis_read';
         $this->load->view('template/backend', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('lokasi_tangkapan_ikan'));
+            redirect(site_url('paramter_ekologis'));
         }
     }
 
@@ -80,18 +79,17 @@ class Lokasi_tangkapan_ikan extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('lokasi_tangkapan_ikan/create_action'),
+            'action' => site_url('paramter_ekologis/create_action'),
 	    'id' => set_value('id'),
-	    'id_stasiun' => set_value('id_stasiun'),
-	    'lokasi' => set_value('lokasi'),
+	    'parameter' => set_value('parameter'),
 	);
-        $data['title'] = 'Lokasi Tangkapan Ikan';
+        $data['title'] = 'Paramter Ekologis';
         $data['subtitle'] = '';
         $data['crumb'] = [
             'Dashboard' => '',
         ];
 
-        $data['page'] = 'lokasi_tangkapan_ikan/Lokasi_tangkapan_ikan_form';
+        $data['page'] = 'paramter_ekologis/Paramter_ekologis_form';
         $this->load->view('template/backend', $data);
     }
     
@@ -104,13 +102,12 @@ class Lokasi_tangkapan_ikan extends CI_Controller
         } else {
             $data = array(
 		'id' => $this->input->post('id',TRUE),
-		'id_stasiun' => $this->input->post('id_stasiun',TRUE),
-		'lokasi' => $this->input->post('lokasi',TRUE),
+		'parameter' => $this->input->post('parameter',TRUE),
 	    );
-if(! $this->Lokasi_tangkapan_ikan_model->is_exist($this->input->post('id'))){
-                $this->Lokasi_tangkapan_ikan_model->insert($data);
+if(! $this->Paramter_ekologis_model->is_exist($this->input->post('id'))){
+                $this->Paramter_ekologis_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('lokasi_tangkapan_ikan'));
+            redirect(site_url('paramter_ekologis'));
             }else{
                 $this->create();
                 $this->session->set_flashdata('message', 'Create Record Faild, id is exist');
@@ -119,27 +116,26 @@ if(! $this->Lokasi_tangkapan_ikan_model->is_exist($this->input->post('id'))){
     
     public function update($id) 
     {
-        $row = $this->Lokasi_tangkapan_ikan_model->get_by_id($id);
+        $row = $this->Paramter_ekologis_model->get_by_id($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('lokasi_tangkapan_ikan/update_action'),
+                'action' => site_url('paramter_ekologis/update_action'),
 		'id' => set_value('id', $row->id),
-		'id_stasiun' => set_value('id_stasiun', $row->id_stasiun),
-		'lokasi' => set_value('lokasi', $row->lokasi),
+		'parameter' => set_value('parameter', $row->parameter),
 	    );
-            $data['title'] = 'Lokasi Tangkapan Ikan';
+            $data['title'] = 'Paramter Ekologis';
         $data['subtitle'] = '';
         $data['crumb'] = [
             'Dashboard' => '',
         ];
 
-        $data['page'] = 'lokasi_tangkapan_ikan/Lokasi_tangkapan_ikan_form';
+        $data['page'] = 'paramter_ekologis/Paramter_ekologis_form';
         $this->load->view('template/backend', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('lokasi_tangkapan_ikan'));
+            redirect(site_url('paramter_ekologis'));
         }
     }
     
@@ -152,32 +148,31 @@ if(! $this->Lokasi_tangkapan_ikan_model->is_exist($this->input->post('id'))){
         } else {
             $data = array(
 		'id' => $this->input->post('id',TRUE),
-		'id_stasiun' => $this->input->post('id_stasiun',TRUE),
-		'lokasi' => $this->input->post('lokasi',TRUE),
+		'parameter' => $this->input->post('parameter',TRUE),
 	    );
 
-            $this->Lokasi_tangkapan_ikan_model->update($this->input->post('id', TRUE), $data);
+            $this->Paramter_ekologis_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('lokasi_tangkapan_ikan'));
+            redirect(site_url('paramter_ekologis'));
         }
     }
     
     public function delete($id) 
     {
-        $row = $this->Lokasi_tangkapan_ikan_model->get_by_id($id);
+        $row = $this->Paramter_ekologis_model->get_by_id($id);
 
         if ($row) {
-            $this->Lokasi_tangkapan_ikan_model->delete($id);
+            $this->Paramter_ekologis_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('lokasi_tangkapan_ikan'));
+            redirect(site_url('paramter_ekologis'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('lokasi_tangkapan_ikan'));
+            redirect(site_url('paramter_ekologis'));
         }
     }
 
     public function deletebulk(){
-        $delete = $this->Lokasi_tangkapan_ikan_model->deletebulk();
+        $delete = $this->Paramter_ekologis_model->deletebulk();
         if($delete){
             $this->session->set_flashdata('message', 'Delete Record Success');
         }else{
@@ -189,8 +184,7 @@ if(! $this->Lokasi_tangkapan_ikan_model->is_exist($this->input->post('id'))){
     public function _rules() 
     {
 	$this->form_validation->set_rules('id', 'id', 'trim|required');
-	$this->form_validation->set_rules('id_stasiun', 'id stasiun', 'trim|required');
-	$this->form_validation->set_rules('lokasi', 'lokasi', 'trim|required');
+	$this->form_validation->set_rules('parameter', 'parameter', 'trim|required');
 
 	$this->form_validation->set_rules('id', 'id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -198,8 +192,8 @@ if(! $this->Lokasi_tangkapan_ikan_model->is_exist($this->input->post('id'))){
 
 }
 
-/* End of file Lokasi_tangkapan_ikan.php */
-/* Location: ./application/controllers/Lokasi_tangkapan_ikan.php */
+/* End of file Paramter_ekologis.php */
+/* Location: ./application/controllers/Paramter_ekologis.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2019-10-07 07:47:35 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2019-10-07 07:47:38 */
 /* http://harviacode.com */

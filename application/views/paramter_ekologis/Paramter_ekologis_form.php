@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-md-6">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><?= $button;?> Lokasi_tangkapan_ikan</h3>
+                <h3 class="box-title"><?= $button;?> Paramter_ekologis</h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -19,15 +19,11 @@
             <input type="text" class="form-control" name="id" id="id" placeholder="Id" value="<?php echo $id; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Id Stasiun <?php echo form_error('id_stasiun') ?></label>
-            <input type="text" class="form-control" name="id_stasiun" id="id_stasiun" placeholder="Id Stasiun" value="<?php echo $id_stasiun; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="varchar">Lokasi <?php echo form_error('lokasi') ?></label>
-            <input type="text" class="form-control" name="lokasi" id="lokasi" placeholder="Lokasi" value="<?php echo $lokasi; ?>" />
+            <label for="varchar">Parameter <?php echo form_error('parameter') ?></label>
+            <input type="text" class="form-control" name="parameter" id="parameter" placeholder="Parameter" value="<?php echo $parameter; ?>" />
         </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('lokasi_tangkapan_ikan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('paramter_ekologis') ?>" class="btn btn-default">Cancel</a>
 	</form>
          </div>
         </div>
