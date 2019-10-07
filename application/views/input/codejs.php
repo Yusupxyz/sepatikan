@@ -35,6 +35,13 @@ function save() {
     }
 }
 
+function lanjut(){
+    stasiun=stasiun+1;
+    document.getElementById("judul").innerHTML = "<b> Data Stasiun "+stasiun+"</b>";
+    document.getElementById("form1").reset();
+    $('#lanjut').attr("disabled", true);	
+}
+
 function saveIkan(id) {
     //input data tangkapan ikan
     var ikan = $('input[name="ikan[]"]').map(function(){ 
@@ -103,6 +110,7 @@ function saveIkan(id) {
         success: function(data){
             console.log(data);
             alert("Data tersimpan");
+            $('#lanjut').removeAttr("disabled");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR, textStatus, errorThrown);

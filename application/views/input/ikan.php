@@ -20,11 +20,11 @@
                 <hr />
             </div>
         </div>
-        <div>
-            <b>  DATA STASIUN 1 </b>    
+        <div id="judul">
+          <b>  DATA STASIUN 1 </b> 
         </div>
         <div class="col-sm-6">
-        <form  action="/action_page.php">
+        <form id="form1" >
             <div class="form-group">
                 <label class="control-label col-sm-2" for="desa">DESA</label>
                 <div class="col-sm-8">
@@ -38,7 +38,6 @@
                     <input type="text" class="form-control" id="koordinat" name="koordinat" placeholder="Masukkan koordinat desa">
                 </div>
             </div>
-        </form>
         </div>
         <div >
             <table class="table table-striped text-left" style="margin-bottom: 10px; margin-top: 100px" style="width:100px;">
@@ -104,9 +103,11 @@
             <?php } ?>
             </table>   
         </div>
+        </form>
+
         <div align="right">
             <button class="btn btn-primary" type="submit" onclick="save()" id="submit"><i class="fa fa-save"></i> Simpan Data</button>
-            <button class="btn btn-warning" type="submit" onclick="cek()" id=""><i class="fa fa-arrow-right"></i> Stasiun Selanjutnya</button>
+            <button class="btn btn-warning" type="button" onclick="lanjut()" id="lanjut" ><i class="fa fa-arrow-right" ></i> Stasiun Selanjutnya</button>
             <?php echo anchor(site_url('Auth/logout'),'<i class="fa fa-check"></i> Selesai', 'class="btn bg-green"'); ?>
         </div>
     </div>
