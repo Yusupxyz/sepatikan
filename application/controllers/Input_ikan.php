@@ -37,7 +37,8 @@ class Input_ikan extends CI_Controller {
 	public function saveStasiun(){
 		$id=uniqid();
 		$data = array(
-			'id' => $id,
+			'id' => $id, 
+			'id_jenis_data' => '1',
 			'stasiun'  => $this->input->post('stasiun'), 
 			'desa'  => $this->input->post('desa'), 
 			'koordinat' => $this->input->post('koordinat'), 

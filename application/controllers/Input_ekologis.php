@@ -39,6 +39,7 @@ class Input_ekologis extends CI_Controller {
 		$id=uniqid();
 		$data = array(
 			'id' => $id,
+			'id_jenis_data' => '2',
 			'stasiun'  => $this->input->post('stasiun'), 
 			'desa'  => $this->input->post('desa'), 
 			'koordinat' => $this->input->post('koordinat'), 

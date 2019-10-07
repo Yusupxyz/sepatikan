@@ -8,7 +8,7 @@ class Jenis_data_model extends CI_Model
 
     public $table = 'jenis_data';
     public $id = 'id';
-    public $order = 'DESC';
+    public $order = 'ASC';
 
     function __construct()
     {
