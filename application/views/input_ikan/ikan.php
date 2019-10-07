@@ -107,7 +107,7 @@
 
         <div align="right">
             <button class="btn btn-primary" type="submit" onclick="save()" id="submit"><i class="fa fa-save"></i> Simpan Data</button>
-            <button class="btn btn-warning" type="button" onclick="lanjut()" id="lanjut" ><i class="fa fa-arrow-right" ></i> Stasiun Selanjutnya</button>
+            <button class="btn btn-warning" type="button" onclick="lanjut()" id="lanjut" disabled><i class="fa fa-arrow-right" ></i> Stasiun Selanjutnya</button>
             <?php echo anchor(site_url('Auth/logout'),'<i class="fa fa-check"></i> Selesai', 'class="btn bg-green"'); ?>
         </div>
     </div>

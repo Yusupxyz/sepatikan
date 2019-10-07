@@ -47,29 +47,52 @@ function lanjut(){
 }
 
 function saveEkologis(id) {
-    var id = $('input[name="id_ekologis[]"]').map(function(){ 
+    var id_ekologis = $('input[name="id_ekologis[]"]').map(function(){ 
                     return this.value; 
                 }).get();
-    id.forEach(function (value, i) {
-        // input data ekologis
-        var data = $('input[name="data[]"]').map(function(){ 
-                        return this.value; 
-                    }).get();
-        $.ajax({
-            type : "POST",
-            url  : "<?php echo site_url('input_ekologis/saveDataEkologis')?>",
-            dataType : "JSON",
-            data : { 'data[]':data, id_parameter : value, id_st : id },
-            success: function(data){
-                console.log(data);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR, textStatus, errorThrown);
-            }
-        }); 
-    });
-    
+    // input data ekologis
+    var data = $('input[name="data[]"]').map(function(){ 
+                    return this.value; 
+                }).get();
+    $.ajax({
+        type : "POST",
+        url  : "<?php echo site_url('input_ekologis/saveDataEkologis')?>",
+        dataType : "JSON",
+        data : { 'data[]':data, 'id_parameter[]' : id_ekologis, id_st : id },
+        success: function(data){
+            console.log(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+    }); 
 
+    // input data ekologis baru
+    var parameter_baru = $('input[name="parameter_baru[]"]').map(function(){ 
+                    return this.value; 
+                }).get();
+    // input data ekologis
+    var data_baru = $('input[name="data_baru[]"]').map(function(){ 
+                    return this.value; 
+                }).get();
+    parameter_baru.forEach(function(value,i){
+        if (value!=""){
+            $.ajax({
+                type : "POST",
+                url  : "<?php echo site_url('input_ekologis/saveDataEkologisBaru')?>",
+                dataType : "JSON",
+                data : { 'data_baru[]':data_baru, 'parameter_baru' : value, id_st : id },
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+    }); 
+    alert("Data tersimpan.");
+    $('#lanjut').removeAttr("disabled");
 }
 
 </script>

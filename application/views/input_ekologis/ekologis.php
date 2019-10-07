@@ -54,20 +54,20 @@
                     <input  class="form-control" type="text" name="parameter[]" value="<?= $value->parameter ?>" disabled><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="data[]" placeholder="Masukkan Data Pengamatan"><br>
+                    <input  class="form-control" type="number" name="data[]" placeholder="Masukkan Data Pengamatan"><br>
                 </th>
             </tr>
             <?php } ?>
 
             <?php for ($j=0; $j < 5; $j++) { ?>
-                <input   type="hidden" name="id_ekologis[]" value="0">
+                <!-- <input   type="hidden" name="id_ekologis_baru[]" value="0"> -->
                 <tr>
                 <th><?= $i++ ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="parameter[]" placeholder="Masukkan Nama Parameter"><br>
+                    <input  class="form-control" type="text" name="parameter_baru[]" placeholder="Masukkan Nama Parameter"><br>
                 </th>
                 <th>
-                    <input  class="form-control" type="text" name="data[]" placeholder="Masukkan Data Pengamatan"><br>
+                    <input  class="form-control" type="number" name="data_baru[]" placeholder="Masukkan Data Pengamatan"><br>
                 </th>
             </tr>
             <?php } ?>

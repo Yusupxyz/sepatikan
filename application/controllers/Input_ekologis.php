@@ -52,15 +52,42 @@ class Input_ekologis extends CI_Controller {
 
 	public function saveDataEkologis(){
 		$data = $this->input->post('data');
+		$id_parameter = $this->input->post('id_parameter');
 		$i=0;
 		foreach($data as $key => $value ) {
 			if ($value!='' || $value!=null){
-				$data = array(
+				$data_ekologis = array(
 					'id_stasiun' => $this->input->post('id_st'),
-					'id_parameter'  => $this->input->post('id_parameter'),
+					'id_parameter'  => $id_parameter[$i],
 					'data'  => $value
 				);
-				$result=$this->Data_ekologis_model->insert($data);
+				$result=$this->Data_ekologis_model->insert($data_ekologis);
+				$i++;
+			}
+		}
+		echo json_encode($result);
+	}
+
+	public function saveDataEkologisBaru(){
+		$result="kosong";
+		$id_parameter=uniqid();
+		$data = array(
+			'id'  => $id_parameter,
+			'parameter' => $this->input->post('parameter_baru'),
+			'jenis'  => '1'
+		);
+		$this->Paramter_ekologis_model->insert($data);
+
+		$data_baru = $this->input->post('data_baru');
+		$i=0;
+		foreach($data_baru as $key => $value ) {
+			if ($value!='' || $value!=null){
+				$data_ekologis = array(
+					'id_stasiun' => $this->input->post('id_st'),
+					'id_parameter'  => $id_parameter,
+					'data'  => $value
+				);
+				$result=$this->Data_ekologis_model->insert($data_ekologis);
 				$i++;
 			}
 		}
