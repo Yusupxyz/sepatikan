@@ -42,67 +42,34 @@
         <div >
             <table class="table table-striped text-left" style="margin-bottom: 10px; margin-top: 100px" style="width:100px;">
             <tr>
-                <th colspan="4">Hasil tangkapan berdasarkan jenis ikan pada periode ini</th>
-            </tr>
-            <tr>
                 <th>No.</th>
-                <th>Nama Ikan</th>
-                <th>Hasil tangkapan (kg/hari/nelayan)</th>
-                <th>Ukuran ikan rata rata (gram/ekor)</th>
+                <th>Parameter</th>
+                <th>Data</th>
             </tr>
-            <?php for ($i=0; $i < 6; $i++) { ?>
+            <?php $i=1; foreach ($parameter as $key => $value) { ?>
+                <input   type="hidden" name="id_sen[]" value="<?= $value->id ?>">
                 <tr>
-                <th><?= $i+1 ?>.</th>
+                <th><?= $i++ ?>.</th>
                 <th>
-                    <input  class="form-control" type="text" name="ikan[]" placeholder="Masukkan Nama Ikan"><br>
+                    <p><?= $value->parameter ?> </p>
+                    <?php $j=1; foreach ($nilai_parameter[$value->id] as $key => $value2) { ?>
+                        <p><?= $j++.'. '.$value2->nilai ?> </p> 
+                    <?php } ?>
                 </th>
                 <th>
-                    <input  class="form-control" type="number" name="hasil[]" placeholder="Masukkan Hasil"><br>
-                </th>
-                <th>
-                    <input  class="form-control" type="number" name="ukuran[]" placeholder="Masukkan Ukuran"><br>  
+                    <select name="data[]" class="form-control">
+                        <option value="0">--Pilih--</option>
+                        <option value="<?= $value->id_nilai_1 ?>">1</option>
+                        <option value="<?= $value->id_nilai_2 ?>">2</option>
+                        <option value="<?= $value->id_nilai_3 ?>">3</option>
+                    </select> 
                 </th>
             </tr>
             <?php } ?>
             
             </table>   
         </div> 
-        <div class=" col-xs-12 col-md-4">
-              <p class="text-left bg-success">Rata rata hasil tangkapan total per nelayan per hari (kg/hari/nelayan) pada periode ini</p>
-        </div>
-        <div class=" col-xs-12 col-md-8">
-            <input  class="form-control" type="number" name="rata" id="rata" placeholder="Masukkan rata-rata hasil tangkapan"><br>
-        </div>
-        <div class=" col-xs-12 col-md-4">
-              <p class="text-left bg-success">Jenis alat tangkap utama yang digunakan pada periode ini</p>
-        </div>
-        <div class=" col-xs-12 col-md-8">
-            <table class="table table-striped text-left" >
-            <?php for ($i=0; $i < 4; $i++) { ?>
-                <tr>
-                <th><?= $i+1 ?>.</th>
-                <th>
-                    <input  class="form-control" type="text" name="alat[]" placeholder="Masukkan jenis alat tangkap utama"><br>
-                </th>
-            </tr>
-            <?php } ?>
-            </table>   
-        </div>
-        <div class=" col-xs-12 col-md-4">
-              <p class="text-left bg-success">Lokasi pengakapan utama pada periode ini</p>
-        </div>
-        <div class=" col-xs-12 col-md-8">
-        <table class="table table-striped text-left" >
-            <?php for ($i=0; $i < 4; $i++) { ?>
-                <tr>
-                <th ><?= $i+1 ?>.</th>
-                <th>
-                    <input  class="form-control" type="text" name="lokasi[]" placeholder="Masukkan lokasi penangkapan"><br>
-                </th>
-            </tr>
-            <?php } ?>
-            </table>   
-        </div>
+      
         </form>
 
         <div align="right">

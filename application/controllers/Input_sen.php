@@ -10,8 +10,9 @@ class Input_sen extends CI_Controller {
         $this->load->model('Sungai_model');
 		$this->load->model('Tahun_model');
 		$this->load->model('Stasiun_model');
-		$this->load->model('Data_ekologis_model');
-		$this->load->model('Paramter_ekologis_model');
+		$this->load->model('Data_sen_model');
+		$this->load->model('Parameter_sen_model');
+		$this->load->model('Nilai_sen_model');
 	}
 	
 	public function index($sungai,$tahun)
@@ -26,7 +27,13 @@ class Input_sen extends CI_Controller {
             'Input SOSIAL EKONOMI NELAYAN' => '',
         ];
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
-        $data['parameter'] = $this->Paramter_ekologis_model->get_by_jenis();
+		$data['parameter'] = $this->Parameter_sen_model->get_all();
+		foreach ($data['parameter'] as $key => $value) {
+			$data['nilai_parameter'][$value->id][] = $this->Nilai_sen_model->get_by_id($value->id_nilai_1);
+			$data['nilai_parameter'][$value->id][] = $this->Nilai_sen_model->get_by_id($value->id_nilai_2);
+			$data['nilai_parameter'][$value->id][] = $this->Nilai_sen_model->get_by_id($value->id_nilai_3);
+		}
+		// print("<pre>".print_r($data['nilai_parameter'],true)."</pre>");
         $data['action3'] = 'Cover';
         $data['code_js'] = 'Input_sen/codejs';
         $data['page'] = 'Input_sen/sen';
@@ -56,12 +63,12 @@ class Input_sen extends CI_Controller {
 		$i=0;
 		foreach($data as $key => $value ) {
 			if ($value!='' || $value!=null){
-				$data_ekologis = array(
+				$data_sen = array(
 					'id_stasiun' => $this->input->post('id_st'),
 					'id_parameter'  => $id_parameter[$i],
-					'data'  => $value
+					'id_nilai'  => $value
 				);
-				$result=$this->Data_ekologis_model->insert($data_ekologis);
+				$result=$this->Data_sen_model->insert($data_sen);
 				$i++;
 			}
 		}
