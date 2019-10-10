@@ -40,7 +40,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-      <form action="<?= base_url($action); ?>" method="post" id="form2">
+      <form action="" method="post" id="form2">
             PILIH LOKASI :
             <?php echo form_dropdown('lokasi', $options, null, $attribute3); ?>
             <br>

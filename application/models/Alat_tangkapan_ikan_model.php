@@ -29,6 +29,21 @@ class Alat_tangkapan_ikan_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
     
+    // get data by id banyak
+    function get_data($id_sungai,$id_jenis_data,$id_tahun, $id_periode,$stasiun=null)
+    {
+        $this->db->select('*');
+        $this->db->join('stasiun', 'alat_tangkapan_ikan.id_stasiun=stasiun.id','left');
+        $this->db->where('id_periode', $id_periode);
+        $this->db->where('id_tahun', $id_tahun);
+        $this->db->where('id_sungai', $id_sungai);
+        $this->db->where('id_jenis_data', $id_jenis_data);
+        if ($stasiun!=null) 
+            $this->db->where('stasiun', $stasiun);
+        $this->db->group_by('alat');
+        return $this->db->get($this->table)->result();
+    }
+
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id', $q);

@@ -60,6 +60,6 @@ $route['admin'] = 'admin/dashboard';
 $route['input_ikan/(.*)/(.*)']='input_ikan/index/$1/$2';
 $route['input_ekologis/(.*)/(.*)']='input_ekologis/index/$1/$2';
 $route['input_sen/(.*)/(.*)']='input_sen/index/$1/$2';
-$route['data/(.*)/(.*)/(.*)']='data/index/$1/$2/$3';
+$route['data_tampil_ikan/(.*)/(.*)/(.*)']='data_tampil_ikan/index/$1/$2/$3';
 
 

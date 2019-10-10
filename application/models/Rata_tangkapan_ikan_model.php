@@ -28,6 +28,20 @@ class Rata_tangkapan_ikan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data rata
+    function get_data($id_sungai,$id_jenis_data,$id_tahun, $id_periode,$stasiun=null)
+    {
+        $this->db->select('*');
+        $this->db->join('stasiun', 'rata_tangkapan_ikan.id_stasiun=stasiun.id','left');
+        $this->db->where('id_periode', $id_periode);
+        $this->db->where('id_tahun', $id_tahun);
+        $this->db->where('id_sungai', $id_sungai);
+        $this->db->where('id_jenis_data', $id_jenis_data);
+        if ($stasiun!=null) 
+            $this->db->where('stasiun', $stasiun);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

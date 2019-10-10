@@ -25,7 +25,9 @@ class Cover extends CI_Controller {
         $data['modal'] = 'cover/modal';
         $data['codejs'] = 'cover/codejs';
         $data['action'] = 'auth';
-        $data['action'] = 'data';
+        $data['action2'] = 'data_tampil_ikan';
+        $data['action3'] = 'data_tampil_ekologis';
+        $data['action4'] = 'data_tampil_sen';
 		$this->load->view('Cover/index', $data);
 	}
 
