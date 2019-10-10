@@ -81,7 +81,7 @@ h1 {
 
         <button type="button" class="btn btn-danger" style="font-size: 25px;" data-toggle="modal" data-target="#modalAwal">INPUT DATA</button>&emsp;&emsp;&emsp;&emsp;
         <button type="button" class="btn btn-success" style="font-size: 25px;" data-toggle="modal" data-target="#modalLokasi">LIHAT DATA</button>&emsp;&emsp;&emsp;&emsp;
-        <button type="button" class="btn btn-info" style="font-size: 25px;">DESKRIPSI</button>
+        <input type="button" class="btn btn-info" style="font-size: 25px;" value="DESKRIPSI" onclick="window.location.href='<?= base_url('deskripsi_sistem'); ?>'" />
 
         </div>
         <div class="col-sm-1 ex1" align="center">
