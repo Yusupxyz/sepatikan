@@ -18,7 +18,7 @@ class Data_tampil_ikan extends CI_Controller {
 	
 	public function index($id_sungai,$jenis_data,$id_tahun)
 	{
-        $data['options'] = $this->Sungai_model->get_option();
+		$data['options'] = $this->Sungai_model->get_option();
 		$data['options2'] = $this->Jenis_data_model->get_option();
 		$data['options3'] = $this->Tahun_model->get_option();
 		$data['attribute'] = 'class="form-control inline" id="sungai"';
@@ -69,10 +69,12 @@ class Data_tampil_ikan extends CI_Controller {
 		$data['data_lokasi_kemarau'][] =$this->Lokasi_tangkapan_ikan_model->get_data($id_sungai,$jenis_data,$id_tahun,'2','2');
 		$data['data_lokasi_kemarau'][] =$this->Lokasi_tangkapan_ikan_model->get_data($id_sungai,$jenis_data,$id_tahun,'2','3');
 		$data['data_lokasi_kemarau'][] =$this->Lokasi_tangkapan_ikan_model->get_data($id_sungai,$jenis_data,$id_tahun,'2','4');
-		// print("<pre>".print_r($data['data_alat_hujan'],true)."</pre>");
+		// print("<pre>".print_r($data['data_alat_hujan'],true)."</pre>");		
+        $data['action2'] = 'data_tampil_ikan';
+        $data['action3'] = 'data_tampil_ekologis';
+        $data['action4'] = 'data_tampil_sen';
+        $data['modal'] = 'cover/modal';
         $data['codejs'] = 'cover/codejs';
-        $data['action'] = 'auth';
-        $data['action'] = 'data';
 		$this->load->view('Data/data_penangkapan_ikan', $data);
 	}
 

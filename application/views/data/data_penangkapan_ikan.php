@@ -163,9 +163,17 @@
             </div>
         </div>
       <?php } ?>
+      <div align="right">
+            <?php echo anchor(site_url('Cover'),'<i class="fa fa-check"></i> Menu Utama', 'class="btn bg-green"'); ?>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalLokasi">Menu Lihat Data</button>
+        </div>
+        <br>
   </div>
 </div>
 
+<?php $this->load->view($modal); ?>
 
 </body>
-</html>                            
+</html>                    
+
+<?php $this->load->view($codejs); ?>
