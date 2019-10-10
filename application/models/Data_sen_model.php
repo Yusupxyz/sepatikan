@@ -22,6 +22,15 @@ class Data_sen_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // get all with join
+    function get_all_join()
+    {
+        $this->db->select('*');
+        $this->db->join('nilai_sen', 'data_sen.id_nilai=nilai_sen.id','left');
+        $this->db->order_by('data_sen.id', $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {
