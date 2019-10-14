@@ -28,6 +28,18 @@ class Stasiun_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data by id
+    function get_by($id_jenis_data,$id_sungai,$id_tahun,$id_user,$stasiun)
+    {
+        $this->db->select('*');
+        $this->db->where('id_jenis_data', $id_jenis_data);
+        $this->db->where('id_sungai', $id_sungai);
+        $this->db->where('id_tahun', $id_tahun);
+        $this->db->where('id_user', $id_user);
+        $this->db->where('stasiun', $stasiun);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

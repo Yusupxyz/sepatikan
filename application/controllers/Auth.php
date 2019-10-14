@@ -13,11 +13,10 @@ class Auth extends CI_Controller
 		$this->load->database();
 		$this->load->library(array('ion_auth', 'form_validation'));
 		$this->load->helper(array('url', 'language'));
-
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
 		$this->lang->load('auth');
 		$this->load->model('Sungai_model');
+		$this->user = $this->ion_auth->user()->row();
 	}
 
 	/**
@@ -59,7 +58,7 @@ class Auth extends CI_Controller
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('tahun/pilih_tahun/'.$sungai.'/'.$jenis_data, 'refresh');
+				redirect('tahun/pilih_tahun/'.$sungai.'/'.$jenis_data.'/'.$this->user->id, 'refresh');
 			}
 			else
 			{

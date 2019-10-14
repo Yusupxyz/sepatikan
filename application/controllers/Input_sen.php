@@ -15,10 +15,11 @@ class Input_sen extends CI_Controller {
 		$this->load->model('Nilai_sen_model');
 	}
 	
-	public function index($sungai,$tahun)
+	public function index($id_user,$sungai,$tahun)
 	{
 		$data['id_tahun'] = $tahun;
 		$data['id_sungai'] = $sungai;
+		$data['id_user'] = $id_user;
         $nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
         $tahun = $this->Tahun_model->get_by_id($tahun)->tahun;
 		$data['title'] = 'INPUT DATA SOSIAL EKONOMI NELAYAN '.strtoupper($nama_sungai);

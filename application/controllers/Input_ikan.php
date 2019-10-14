@@ -16,17 +16,23 @@ class Input_ikan extends CI_Controller {
 		$this->load->model('Lokasi_tangkapan_ikan_model');
 	}
 	
-	public function index($sungai,$tahun)
+	public function index($id_user,$sungai,$id_tahun)
 	{
-		$data['id_tahun'] = $tahun;
+		$data['id_tahun'] = $id_tahun;
 		$data['id_sungai'] = $sungai;
+		$data['id_user'] = $id_user;
         $nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
-        $tahun = $this->Tahun_model->get_by_id($tahun)->tahun;
+        $tahun = $this->Tahun_model->get_by_id($id_tahun)->tahun;
 		$data['title'] = 'INPUT DATA PENANGKAPAN IKAN '.strtoupper($nama_sungai);
 		$data['subtitle'] = '';
         $data['crumb'] = [
             'Input Ikan' => '',
-        ];
+		];
+			// for ($i=1; $i < 5; $i++) { 
+			// 	$stasiun[]=$this->Stasiun_model->get_by('1',$sungai,$id_tahun,$id_user,$i);
+			// }
+			// $data['stasiun'] = $stasiun;
+		// print("<pre>".print_r($data['stasiun'],true)."</pre>");		
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
         $data['action3'] = 'Cover';
         $data['code_js'] = 'Input_ikan/codejs';
@@ -45,6 +51,7 @@ class Input_ikan extends CI_Controller {
 			'id_sungai' => $this->input->post('id_sungai'), 
 			'id_tahun' => $this->input->post('id_tahun'), 
 			'id_periode' => $this->input->post('id_periode'), 
+			'id_user' => $this->input->post('id_user')
 		);
 		$result=$this->Stasiun_model->insert($data);
 		header('Content-type: application/json');

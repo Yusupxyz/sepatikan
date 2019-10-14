@@ -43,7 +43,10 @@
   <div class="tab-content">
       <?php  for ($i=0; $i < 5; $i++) {  ?>
         <div id="menu<?= $i+1 ?>" class="container tab-pane <?php echo $i==0 ? 'active' : 'fade'; ?>"><br>
+        <?php echo anchor(site_url('data_tampil_ikan/download/'.$i.'/'.$title.'/'.$id_sungai.'/'.$id_tahun.'/'.$jenis_data),'<i class="fa fa-download"></i> Download (Excel)', 'class="btn bg-green"'); ?>
+
             <div class="bs-example">
+            
                 <table class="table table-hover table-bordered">
                     <thead class="thead-dark">
                         <tr>

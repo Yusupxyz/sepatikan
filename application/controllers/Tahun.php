@@ -78,7 +78,7 @@ class Tahun extends CI_Controller
         }
     }
 
-    public function pilih_tahun($sungai,$jenis_data)
+    public function pilih_tahun($sungai,$jenis_data,$id_user)
     {
         $nama_sungai = $this->Sungai_model->get_by_id($sungai)->sungai;
         $data['options'] = $this->Tahun_model->get_option();
@@ -87,11 +87,11 @@ class Tahun extends CI_Controller
         $data['sungai'] = $sungai;
         $data['jenis_data'] = $jenis_data;
         if ($jenis_data=='1'){
-            $data['action'] = 'input_ikan/'.$sungai;
+            $data['action'] = 'input_ikan/'.$id_user.'/'.$sungai;
         }elseif($jenis_data=='2'){
-            $data['action'] = 'input_ekologis/'.$sungai;
+            $data['action'] = 'input_ekologis/'.$id_user.'/'.$sungai;
         }else{
-            $data['action'] = 'input_sen/'.$sungai;
+            $data['action'] = 'input_sen/'.$id_user.'/'.$sungai;
         }
         $this->load->view('tahun/index', $data);
     }

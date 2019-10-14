@@ -25,7 +25,7 @@ function save() {
             type : "POST",
             url  : "<?php echo site_url('input_ikan/saveStasiun')?>",
             dataType : "JSON",
-            data : {stasiun:stasiun, desa:document.getElementById("desa").value, koordinat:document.getElementById("koordinat").value, id_sungai : id_sungai, id_tahun : id_tahun,  id_periode : periode},
+            data : {stasiun:stasiun, desa:document.getElementById("desa").value, koordinat:document.getElementById("koordinat").value, id_sungai : id_sungai, id_tahun : id_tahun,  id_periode : periode, id_user : <?= $id_user ?>},
             success: function(data){
                 id_stasiun = data;
                 saveIkan(id_stasiun);
