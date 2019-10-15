@@ -19,6 +19,7 @@
 <div class="container mt-3">
   <h2><?= $title ?> </h2>
   <br>
+  <?php echo anchor(site_url('data_tampil_ekologis/download/'.$title.'/'.$id_sungai.'/'.$id_tahun.'/'.$jenis_data),'<i class="fa fa-download"></i> Download (Excel)', 'class="btn bg-green"'); ?>
     <div class="bs-example">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
