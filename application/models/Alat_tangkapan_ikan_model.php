@@ -28,6 +28,13 @@ class Alat_tangkapan_ikan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data by id
+    function get_by_id_stasiun($id)
+    {
+        $this->db->where('id_stasiun', $id);
+        return $this->db->get($this->table)->result();
+    }
     
     // get data by id banyak
     function get_data($id_sungai,$id_jenis_data,$id_tahun, $id_periode,$stasiun=null)

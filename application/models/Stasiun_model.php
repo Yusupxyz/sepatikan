@@ -38,7 +38,7 @@ class Stasiun_model extends CI_Model
         $this->db->where('id_tahun', $id_tahun);
         $this->db->where('id_user', $id_user);
         $this->db->where('stasiun', $stasiun);
-        return $this->db->get($this->table)->result();
+        return $this->db->get($this->table)->row();
     }
     
     // get total rows

@@ -51,7 +51,8 @@ class Input_sen extends CI_Controller {
 			'koordinat' => $this->input->post('koordinat'), 
 			'id_sungai' => $this->input->post('id_sungai'), 
 			'id_tahun' => $this->input->post('id_tahun'), 
-			'id_periode' => $this->input->post('id_periode'), 
+			'id_periode' => $this->input->post('id_periode'),  
+			'id_user' => $this->input->post('id_user')
 		);
 		$result=$this->Stasiun_model->insert($data);
 		header('Content-type: application/json');

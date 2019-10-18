@@ -18,6 +18,7 @@ class Input_ikan extends CI_Controller {
 	
 	public function index($id_user,$sungai,$id_tahun)
 	{
+		$status=false;
 		$data['id_tahun'] = $id_tahun;
 		$data['id_sungai'] = $sungai;
 		$data['id_user'] = $id_user;
@@ -28,15 +29,34 @@ class Input_ikan extends CI_Controller {
         $data['crumb'] = [
             'Input Ikan' => '',
 		];
-			// for ($i=1; $i < 5; $i++) { 
-			// 	$stasiun[]=$this->Stasiun_model->get_by('1',$sungai,$id_tahun,$id_user,$i);
-			// }
-			// $data['stasiun'] = $stasiun;
-		// print("<pre>".print_r($data['stasiun'],true)."</pre>");		
+		for ($i=1; $i < 5; $i++) { 
+			$stasiun[]=$this->Stasiun_model->get_by('1',$sungai,$id_tahun,$id_user,$i);
+		}
+		foreach ($stasiun as $key => $value) {
+			if (isset($value->id)){
+				$ikan=$this->Data_tangkapan_ikan_model->get_by_id_stasiun($value->id);
+				$rata=$this->Rata_tangkapan_ikan_model->get_by_id_stasiun($value->id);
+				$alat=$this->Alat_tangkapan_ikan_model->get_by_id_stasiun($value->id);
+				$lokasi=$this->Lokasi_tangkapan_ikan_model->get_by_id_stasiun($value->id);
+				$status=true;
+			}
+		}
+		$data['stasiun'] = $stasiun;
+		$data['ikan'] = $ikan;
+		$data['rata'] = $rata;
+		$data['alat'] = $alat;
+		$data['lokasi'] = $lokasi;
+		// print("<pre>".print_r($data['ikan'],true)."</pre>");		
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
-        $data['action3'] = 'Cover';
-        $data['code_js'] = 'Input_ikan/codejs';
-        $data['page'] = 'Input_ikan/Ikan';
+		$data['action3'] = 'Cover';
+		if ($status){
+			$data['code_js'] = 'Input_ikan/codejs_update';
+			$data['page'] = 'Input_ikan/Ikan_update';
+		}else{
+			$data['code_js'] = 'Input_ikan/codejs';
+        	$data['page'] = 'Input_ikan/Ikan';
+		}
+        
 		$this->load->view('template/backend', $data);
 	}
 
