@@ -41,11 +41,16 @@ class Input_ikan extends CI_Controller {
 				$status=true;
 			}
 		}
-		$data['stasiun'] = $stasiun;
-		$data['ikan'] = $ikan;
-		$data['rata'] = $rata;
-		$data['alat'] = $alat;
-		$data['lokasi'] = $lokasi;
+		if (isset($stasiun))
+			$data['stasiun'] = $stasiun;
+		if (isset($ikan))		
+			$data['ikan'] = $ikan;
+		if (isset($rata))
+			$data['rata'] = $rata;
+		if (isset($alat))	
+			$data['alat'] = $alat;
+		if (isset($lokasi))	
+			$data['lokasi'] = $lokasi;
 		// print("<pre>".print_r($data['ikan'],true)."</pre>");		
 		$data['tahun'] = "TAHUN ".strtoupper($tahun);
 		$data['action3'] = 'Cover';
